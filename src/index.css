@@ -1,0 +1,407 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  background: #0c0c0c;
+  font-family: 'Kanit', sans-serif;
+}
+
+/* Page preloader — bouncing/rotating squares, GSAP "keyframes" style (see Preloader.tsx) */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0c0c0c;
+  transition: opacity 0.6s ease;
+}
+
+.preloader--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Same bouncing-squares loader, scoped to a single media block inside the
+   work popup (see WorkModal.tsx) instead of the whole page. */
+.media-loader {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0c0c0c;
+  border-radius: inherit;
+  transition: opacity 0.5s ease;
+}
+
+.media-loader--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.preloader__row {
+  display: flex;
+  gap: 14px;
+}
+
+.preloader__box {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  background: #ffffff; /* white — the visible colour on the dark loading screen */
+  animation: preloaderHop 1.4s ease-in-out infinite;
+}
+
+.preloader__box:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.preloader__box:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.preloader__box:nth-child(4) {
+  animation-delay: 0.45s;
+}
+
+/* Multi-bounce (like the demo's y:[0,80,-10,30,0]) + a full rotation */
+@keyframes preloaderHop {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  20% {
+    transform: translateY(24px) rotate(72deg);
+  }
+  40% {
+    transform: translateY(-6px) rotate(144deg);
+  }
+  60% {
+    transform: translateY(12px) rotate(216deg);
+  }
+  80% {
+    transform: translateY(-3px) rotate(288deg);
+  }
+  100% {
+    transform: translateY(0) rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader__box {
+    animation: preloaderPulse 1.2s ease-in-out infinite;
+  }
+  @keyframes preloaderPulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.25;
+    }
+  }
+}
+
+/* "Copied" toast for the email copy icon (see CopyableEmail.tsx) */
+.copy-toast {
+  animation: copyToastPop 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes copyToastPop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 6px) scale(0.9);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -6px) scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .copy-toast {
+    animation: none;
+  }
+}
+
+/* Hides the scrollbar visually while keeping the element scrollable
+   (see WorkModal.tsx) */
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* old Edge */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+/* Custom cursor — white dot (with emitter tail) + black trailing ring (see Cursor.tsx) */
+.cursor-trail {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: #ffffff;
+  z-index: 9999;
+}
+
+.cursor-ring {
+  width: 15px;
+  height: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  z-index: 9998;
+}
+
+/* Plus (+) sign that scales in inside the ring when over clickable elements */
+.cursor-ring::before,
+.cursor-ring::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: #ffffff;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cursor-ring::before,
+.cursor-ring::after {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.cursor-ring::before {
+  width: 6px;
+  height: 1.5px;
+}
+
+.cursor-ring::after {
+  width: 1.5px;
+  height: 6px;
+}
+
+/* Over a clickable element: dot fades, ring grows into a circle with a plus */
+.cursor-dot.hover {
+  opacity: 0;
+}
+
+.cursor-ring.hover {
+  width: 20px;
+  height: 20px;
+  border-color: rgba(0, 0, 0, 0.9);
+}
+
+.cursor-ring.hover::before,
+.cursor-ring.hover::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Hide the native cursor only where the custom one is active (precise pointers) */
+@media (hover: hover) and (pointer: fine) {
+  body.has-custom-cursor,
+  body.has-custom-cursor * {
+    cursor: none;
+  }
+}
+
+/* Cuberto-style magnetic button with a circular fill (see MagneticButton.tsx) */
+.mag-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 999px;
+  padding: 0.4rem 0.75rem;
+  /* Smooth "chase" toward the cursor + colour flip over the fill */
+  transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), color 0.35s ease;
+  will-change: transform;
+}
+
+.mag-btn__filler {
+  position: absolute;
+  left: -25%;
+  top: -50%;
+  width: 150%;
+  height: 200%;
+  background: #d7e2ea;
+  border-radius: 50%;
+  /* Parked just below the button; sweeps up on hover */
+  transform: translate3d(0, 82%, 0);
+  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mag-btn:hover .mag-btn__filler {
+  transform: translate3d(0, 0, 0);
+}
+
+.mag-btn__text {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
+}
+
+/* Label inverts to dark once the light fill covers it */
+.mag-btn:hover {
+  color: #0c0c0c;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mag-btn,
+  .mag-btn__filler,
+  .mag-btn__text {
+    transition: none;
+  }
+}
+
+/* Work carousel cards (see WorkSection.tsx) */
+.work-card {
+  will-change: transform, opacity;
+  -webkit-user-drag: none;
+  backface-visibility: hidden;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.65);
+}
+
+/* Thumbnail fades in over the accent placeholder once it has loaded, and
+   zooms in on hover — clipped by the card's own rounded/overflow-hidden
+   frame, so it enlarges "inside its frame" rather than spilling out. */
+.work-card__img {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.work-card__img.is-loaded {
+  opacity: 1;
+}
+.work-card:hover .work-card__img {
+  transform: scale(1.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-card__img {
+    transition: opacity 0.6s ease;
+  }
+}
+
+/* Fill-only hover (no magnet/wave) — used by the Download dropdown items */
+.fill-btn {
+  position: relative;
+  overflow: hidden;
+  transition: color 0.35s ease;
+}
+
+.fill-btn__filler {
+  position: absolute;
+  left: -25%;
+  top: -50%;
+  width: 150%;
+  height: 200%;
+  background: #d7e2ea;
+  border-radius: 50%;
+  transform: translate3d(0, 82%, 0);
+  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.fill-btn:hover .fill-btn__filler {
+  transform: translate3d(0, 0, 0);
+}
+
+.fill-btn__text {
+  position: relative;
+  z-index: 1;
+}
+
+.fill-btn:hover {
+  color: #0c0c0c;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill-btn__filler {
+    transition: none;
+  }
+}
+
+/* Stadium "Olé" wave for nav labels (see WaveText.tsx) */
+.wave-text {
+  display: inline-flex;
+}
+
+.wave-letter {
+  display: inline-block;
+  /* Eases letters back to rest smoothly when the hover (and animation) ends */
+  transition: transform 0.35s ease;
+  will-change: transform;
+}
+
+.nav-wave:hover .wave-letter {
+  /* One wave per hover; re-hovering restarts it */
+  animation: navWave 1.2s ease-in-out 1;
+}
+
+@keyframes navWave {
+  0%,
+  40%,
+  100% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-0.5em);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-wave:hover .wave-letter {
+    animation: none;
+  }
+}
+
+.hero-heading {
+  background: linear-gradient(180deg, #646973 0%, #bbccd7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
