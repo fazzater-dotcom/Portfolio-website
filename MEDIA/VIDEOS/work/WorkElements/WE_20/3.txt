@@ -1,1 +1,5 @@
-TITLE: TEst MF
+A technical tutorial I created to show how to rig a character’s jaw for lip sync in After Effects using Joysticks 'n Sliders, including a setup for multiple facial controls.
+
+The tutorial came from a problem I had encountered myself while working with character rigs. After finding a solution, I decided to share it with other animators who might be facing the same challenge.
+
+The tutorial was featured by aescripts and shared by several animation and After Effects communities on Instagram, helping it reach a wider audience of artists and animators.

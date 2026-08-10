@@ -1,0 +1,3 @@
+A personal animation inspired by Tbourida, the traditional Moroccan equestrian performance. I designed the character, horse, colors, and overall visual style, then created a seamless looping animation of the rider galloping with his traditional rifle.
+
+The project focused on 2D character animation, stylization, color, and movement, translating the energy and rhythm of Tbourida into a dynamic animated loop.

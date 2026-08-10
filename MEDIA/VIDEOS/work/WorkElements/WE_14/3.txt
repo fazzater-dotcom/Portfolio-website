@@ -1,0 +1,1 @@
+A fast and dynamic 2D logo animation created for a client, combining smooth transitions with subtle frame-by-frame animation to add character and energy to the reveal.

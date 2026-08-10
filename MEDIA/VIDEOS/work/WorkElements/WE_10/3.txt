@@ -1,0 +1,5 @@
+A personal 2D animation exploring the natural movement of a bird flying above a river, seen from a top-down perspective.
+
+I focused on creating a natural and believable flight cycle, paying close attention to the details of the bird's movement, wing motion, and rhythm. I also developed a custom pink-based color palette for the environment, giving the animation a distinctive and stylized visual identity.
+
+The result is a seamless loop combining 2D animation, movement studies, and color design.

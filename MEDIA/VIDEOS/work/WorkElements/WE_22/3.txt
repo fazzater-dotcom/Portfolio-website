@@ -1,0 +1,3 @@
+A personal 2D animation created for LoopDeLoop, an international animation challenge centered around short looping animations based on a given theme. For the “LOL” theme, I created a playful scene of a father trying to make his baby daughter laugh.
+
+The animation focuses on character acting, timing, and comedic storytelling, designed as a seamless loop where the interaction continuously repeats.

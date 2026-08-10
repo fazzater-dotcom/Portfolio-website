@@ -1,1 +1,1 @@
-TITLE: Tutorial
+TITLE: Logo Animation — Client Project

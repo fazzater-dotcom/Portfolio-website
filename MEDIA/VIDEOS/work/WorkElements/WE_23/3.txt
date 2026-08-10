@@ -1,0 +1,3 @@
+A character animation project for Cash Plus, a Moroccan financial services company offering money transfers, payments, and everyday financial services.
+
+I created and animated 2D characters frame by frame, focusing on expressive movement, playful performances, and comedic timing. I also handled the compositing, integrating the animated characters and elements into the final scenes to create a cohesive and polished result.

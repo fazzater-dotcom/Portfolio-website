@@ -1,0 +1,5 @@
+A personal 2D animation inspired by a playful moment from Moroccan wedding traditions, where the bride and groom are lifted on a platform during the celebration.
+
+I created and rigged the characters in After Effects, combining character rigs with traditional keyframe animation to create the movement. The animation uses exaggerated timing and physical comedy, with the bride's weight becoming part of the visual gag as the characters struggle to lift the platform.
+
+The project allowed me to explore 2D character animation, rigging, timing, and comedic storytelling through a distinctly Moroccan cultural reference.
