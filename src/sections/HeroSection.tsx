@@ -7,9 +7,19 @@ const NAV_LINKS = ['About', 'Work', 'Clients', 'Contact']
 // Served from the MEDIA folder (see vite.config.ts publicDir).
 // Lightweight compressed clip for the autoplaying hero (~10 MB).
 const HERO_VIDEO_URL = '/VIDEOS/ShowREELweb.mp4'
-// Full-quality reel offered as a download (~145 MB).
-const SHOWREEL_DOWNLOAD_URL = '/VIDEOS/ShowREEL%202026%20B.mp4'
-const CV_URL = '/DOCUMENTS/CV.pdf'
+// Full-quality reel offered as a download.
+const SHOWREEL_DOWNLOAD_URL = '/VIDEOS/MehdiFazzatSR.mp4'
+const CV_URL = '/DOCUMENTS/cv%202026.pdf'
+
+// Top-left logo — auto-detected. Drop a file named exactly "logo" (any of
+// these extensions, SVG preferred) into MEDIA/ and it appears automatically,
+// no code changes needed. Until then, the nav just has no left-side mark.
+const logoFiles = import.meta.glob('/MEDIA/logo.{svg,png,webp}', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+}) as Record<string, string>
+const LOGO_URL = Object.values(logoFiles)[0]
 
 // Nav label styling — half the previous size, plus the Olé wave (nav-wave).
 // Layout/hover (fill, magnetic, colour flip) come from .mag-btn.
@@ -42,13 +52,22 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Navbar — top-right */}
+      {/* Navbar — logo top-left (if present), links top-right */}
       <FadeIn
         as="nav"
         delay={0}
         y={-20}
-        className="relative z-20 flex justify-end items-center gap-1 md:gap-2 lg:gap-3 px-6 md:px-10 pt-6 md:pt-8"
+        className="relative z-20 flex justify-between items-center px-6 md:px-10 pt-6 md:pt-8"
       >
+        {LOGO_URL ? (
+          <a href="#" aria-label="Home">
+            <img src={LOGO_URL} alt="" className="h-6 md:h-8 w-auto" draggable={false} />
+          </a>
+        ) : (
+          <span />
+        )}
+
+        <div className="flex items-center gap-1 md:gap-2 lg:gap-3">
         {NAV_LINKS.map((link) => (
           <MagneticButton key={link} href={`#${link.toLowerCase()}`} className={NAV_LABEL_CLASS}>
             <WaveText text={link} />
@@ -73,12 +92,13 @@ export default function HeroSection() {
                 <span className="fill-btn__filler" aria-hidden="true" />
                 <span className="fill-btn__text">CV</span>
               </a>
-              <a href={SHOWREEL_DOWNLOAD_URL} download="ShowREEL 2026 B.mp4" className={DROPDOWN_ITEM_CLASS}>
+              <a href={SHOWREEL_DOWNLOAD_URL} download="MehdiFazzatSR.mp4" className={DROPDOWN_ITEM_CLASS}>
                 <span className="fill-btn__filler" aria-hidden="true" />
                 <span className="fill-btn__text">Showreel</span>
               </a>
             </div>
           </div>
+        </div>
         </div>
       </FadeIn>
     </section>

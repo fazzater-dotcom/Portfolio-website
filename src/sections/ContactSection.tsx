@@ -6,9 +6,9 @@ import CopyableEmail from '../components/CopyableEmail'
 // ── Edit your contact details here ────────────────────────────────────────
 const EMAIL = 'mfazzat@gmail.com'
 const SOCIALS = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/mehdifazzat', Icon: Linkedin }, // ← edit
-  { label: 'Instagram', href: 'https://www.instagram.com/mehdifazzat', Icon: Instagram }, // ← edit
-  { label: 'YouTube', href: 'https://www.youtube.com/@mehdifazzat', Icon: Youtube }, // ← edit
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/mehdi-fazzat-7b9a4815b', Icon: Linkedin },
+  { label: 'Instagram', href: 'https://www.instagram.com/fazzatimation/', Icon: Instagram },
+  { label: 'YouTube', href: 'https://www.youtube.com/watch?v=NxDL8nfy66k', Icon: Youtube },
 ]
 // ────────────────────────────────────────────────────────────────────────────
 

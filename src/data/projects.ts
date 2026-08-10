@@ -48,6 +48,11 @@ export type Project = {
  *
  *     So one video, ten photos, a title + video + 2 photos + a caption —
  *     whatever mix you want. The popup's height simply grows to fit.
+ *  3. (Optional) Give the CAROUSEL CARD a real title instead of "Work 09":
+ *     open  MEDIA/DOCUMENTS/thumbnailtitles.txt  and add a line
+ *       9.My Project Name
+ *     One line per work, "<number>.<Title>" — order doesn't matter, and any
+ *     WI_<n> you don't list just keeps showing "Work <n>".
  *  ─────────────────────────────────────────────────────────────────────────
  */
 
@@ -128,6 +133,23 @@ export function getWorkBlocks(n: number): MediaBlock[] {
   return WORK_BLOCKS.get(n) ?? []
 }
 
+// Custom thumbnail titles: MEDIA/DOCUMENTS/thumbnailtitles.txt — one per
+// line, "<number>.<Title>" (e.g. "22.Tutorial" names WI_22's card "Tutorial").
+// Any WI_<n> not listed just falls back to "Work <n>".
+const thumbnailTitleFiles = import.meta.glob('/MEDIA/DOCUMENTS/thumbnailtitles.txt', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>
+
+const THUMBNAIL_TITLES: Record<number, string> = {}
+for (const content of Object.values(thumbnailTitleFiles)) {
+  for (const line of content.replace(/\r\n/g, '\n').split('\n')) {
+    const match = /^\s*(\d+)\.(.+?)\s*$/.exec(line)
+    if (match) THUMBNAIL_TITLES[parseInt(match[1], 10)] = match[2].trim()
+  }
+}
+
 // Accent colours cycled through for cards that don't have their own image yet.
 const ACCENTS = ['#e56b59', '#5b8def', '#57c07a', '#c77dff', '#f4a259', '#2ec4b6', '#ef476f', '#8ac926']
 
@@ -158,7 +180,7 @@ function buildFromIcons(): Project[] {
     .map(([n, url]) => ({
       id: `work-${n}`,
       n,
-      title: `Work ${String(n).padStart(2, '0')}`,
+      title: THUMBNAIL_TITLES[n] ?? `Work ${String(n).padStart(2, '0')}`,
       accent: ACCENTS[(n - 1) % ACCENTS.length],
       image: url,
       video: videos.get(n),
