@@ -1,7 +1,19 @@
-NoVir is a scientific project focused on developing broad-spectrum antiviral solutions designed to provide protection against a range of viral threats and contribute to better pandemic preparedness.
+PartnerGuard™ — AI-Powered Relationship Damage Control
 
-For this project, I was responsible for developing the storyboard from the provided script and bringing the entire visual concept to life through animation and motion design.
+What if your phone could recognize your partner and automatically protect the things you probably don't want them to see?
 
-I translated the scientific information into a clear and engaging visual narrative, designing the composition, transitions, movement, and pacing to make complex concepts easier to understand. From the initial storyboard through to the final animation, I worked on shaping the visual storytelling and creating a cohesive motion language for the project.
+Meet PartnerGuard™ — a fictional SaaS product designed for one very specific problem: relationship damage control.
 
-The final piece combines 2D animation, motion design, and visual storytelling to communicate a complex scientific subject in an accessible and engaging way.
+This personal motion design project explores how a SaaS product can communicate its idea through UI animation, storytelling, visual effects, and a little bit of absurd humor.
+
+Features include:
+• Partner face recognition
+• Personalized privacy profiles
+• Selective protection for messages, photos and search history
+• Automatic privacy activation
+• Dual-PIN access
+• Discreet background operation
+
+Created as a personal project to explore SaaS / product animation, UI motion design, 2D animation and VFX.
+
+AI-powered relationship damage control.
