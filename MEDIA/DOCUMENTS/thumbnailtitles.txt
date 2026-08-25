@@ -1,5 +1,5 @@
-1.NoVir
-2.Life Giga Regio Factory
+1.Partner Guard
+2.Novir
 3.HYNNOVA
 4.ROAM app
 5.Sapien
@@ -24,3 +24,4 @@
 24.Orange YoXo
 25.Total
 26.Tajinn
+27.Life Giga Regio Factory
