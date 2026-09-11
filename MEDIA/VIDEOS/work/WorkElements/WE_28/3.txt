@@ -1,0 +1,13 @@
+This animation started as a simple practice project.
+
+I had been seeing a few animation styles using grids, and I really liked the visual possibilities they offered. So I decided to experiment and create something of my own.
+
+Then I ran into a problem: creating and animating those grids manually in After Effects was a real pain.
+
+I looked for a solution and found a paid plugin that could help. But instead of buying it, I thought: why not try making my own?
+
+So I spent two days building a custom plugin, then used it to create this animation.
+
+What started as a practice piece ended up becoming two projects in one: building a tool and then using it to bring the animation to life.
+
+Definitely a fun little experiment.
